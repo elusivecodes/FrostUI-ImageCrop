@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FrostUI ImageCrop Methods</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/elusivecodes/frostui@1.4.6/dist/frost-ui.css">
+    <script src="https://cdn.jsdelivr.net/gh/elusivecodes/frostui@1.4.6/dist/frost-ui-bundle.js"></script>
+    <script src="../dist/frost-ui-imagecrop.js"></script>
+    <script src="assets/test.js"></script>
+</head>
+
+<body>
+    <div class="container pt-5">
+        <div class="mb-4">
+            <div class="my-2" id="cropDefault"></div>
+        </div>
+        <div class="mt-1">
+            <div class="btn-group">
+                <button class="btn btn-primary ripple mb-0" id="cropInit" type="button">Init</button>
+                <button class="btn btn-danger ripple mb-0" id="cropDispose" type="button">Dispose</button>
+            </div>
+        </div>
+        <div class="mt-1">
+            <button class="btn btn-secondary ripple mb-0" id="cropGetBounds" type="button">Get Bounds</button>
+            <button class="btn btn-secondary ripple mb-0" id="cropGetOffset" type="button">Get Offset</button>
+            <button class="btn btn-secondary ripple mb-0" id="cropGetZoom" type="button">Get Zoom</button>
+        </div>
+        <div class="mt-1">
+            <button class="btn btn-secondary ripple mb-0" id="cropSetBounds" type="button">Set Bounds (660, 240, 1260, 840)</button>
+            <button class="btn btn-secondary ripple mb-0" id="cropSetOffset" type="button">Set Offset (960, 540)</button>
+            <button class="btn btn-secondary ripple mb-0" id="cropSetZoom" type="button">Set Zoom (0.5)</button>
+        </div>
+        <samp id="output"></samp>
+    </div>
+    <script>
+        const cropDefault = dom.findOne('#cropDefault');
+        const cropInit = dom.findOne('#cropInit');
+        const cropDispose = dom.findOne('#cropDispose');
+        const cropGetBounds = dom.findOne('#cropGetBounds');
+        const cropGetOffset = dom.findOne('#cropGetOffset');
+        const cropGetZoom = dom.findOne('#cropGetZoom');
+        const cropSetBounds = dom.findOne('#cropSetBounds');
+        const cropSetOffset = dom.findOne('#cropSetOffset');
+        const cropSetZooms = dom.findOne('#cropDispose');
+
+        let file;
+
+        dom.addEvent(cropInit, 'click', e => {
+            UI.ImageCrop.init(cropDefault).load(file);
+        });
+
+        dom.addEvent(cropDispose, 'click', e => {
+            UI.ImageCrop.init(cropDefault).dispose();
+        });
+
+        dom.addEvent(cropGetBounds, 'click', e => {
+            const bounds = UI.ImageCrop.init(cropDefault).getBounds();
+            dom.setText(output, `Bounds: ${bounds}`);
+        });
+
+        dom.addEvent(cropGetOffset, 'click', e => {
+            const offset = UI.ImageCrop.init(cropDefault).getOffset();
+            dom.setText(output, `Offset: ${offset}`);
+        });
+
+        dom.addEvent(cropGetZoom, 'click', e => {
+            const zoom = UI.ImageCrop.init(cropDefault).getZoom();
+            dom.setText(output, `Zoom: ${zoom}`);
+        });
+
+        dom.addEvent(cropSetBounds, 'click', e => {
+            UI.ImageCrop.init(cropDefault).setBounds(660, 240, 1260, 840);
+        });
+
+        dom.addEvent(cropSetOffset, 'click', e => {
+            UI.ImageCrop.init(cropDefault).setOffset(960, 540);
+        });
+
+        dom.addEvent(cropSetZoom, 'click', e => {
+            UI.ImageCrop.init(cropDefault).setZoom(.5);
+        });
+
+        fetch(testImage)
+            .then(res => res.blob())
+            .then(temp => {
+                file = temp;
+                dom.triggerEvent(cropInit, 'click');
+            });
+    </script>
+</body>
+
+</html>

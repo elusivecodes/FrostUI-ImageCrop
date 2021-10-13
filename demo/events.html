@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FrostUI ImageCrop Events</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/elusivecodes/frostui@1.4.6/dist/frost-ui.css">
+    <script src="https://cdn.jsdelivr.net/gh/elusivecodes/frostui@1.4.6/dist/frost-ui-bundle.js"></script>
+    <script src="../dist/frost-ui-imagecrop.js"></script>
+    <script src="assets/test.js"></script>
+</head>
+
+<body>
+    <div class="container pt-5">
+        <div class="mb-4">
+            <div class="card mb-2">
+                <div class="card-body py-0 px-2 overflow-auto" id="events" style="height: 100px;"></div>
+            </div>
+            <div class="my-2" id="cropDefault"></div>
+        </div>
+    </div>
+    <script>
+        const cropDefault = dom.findOne('#cropDefault');
+        const events = dom.findOne('#events');
+
+        fetch(testImage)
+            .then(res => res.blob())
+            .then(file => {
+                UI.ImageCrop.init(cropDefault).load(file);
+            });
+
+        dom.addEvent(cropDefault, 'update.ui.imagecrop', e => {
+            const div = dom.create('div', {
+                html: `<small>"${e.type}" event triggered</small>`
+            });
+            dom.append(events, div);
+
+            const scrollHeight = dom.height(events, DOM.SCROLL_BOX);
+            dom.setScrollY(events, scrollHeight);
+        });
+    </script>
+</body>
+
+</html>

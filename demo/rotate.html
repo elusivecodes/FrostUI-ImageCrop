@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FrostUI ImageCrop Rotate</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/elusivecodes/frostui@1.4.6/dist/frost-ui.css">
+    <script src="https://cdn.jsdelivr.net/gh/elusivecodes/frostui@1.4.6/dist/frost-ui-bundle.js"></script>
+    <script src="../dist/frost-ui-imagecrop.js"></script>
+    <script src="assets/test.js"></script>
+</head>
+
+<body>
+    <div class="container pt-5">
+        <div class="mb-4">
+            <div class="my-2" id="cropDefault"></div>
+        </div>
+        <div class="mt-1">
+            <div class="btn-group">
+                <button class="btn btn-light" id="cropRotateN">Rotate (-90)</button>
+                <button class="btn btn-light" id="cropRotate">Rotate (+90)</button>
+            </div>
+            <button class="btn btn-light" id="cropRender">Render</button>
+        </div>
+        <div class="mt-4">
+            <img id="result">
+        </div>
+    </div>
+    <script>
+        const cropDefault = dom.findOne('#cropDefault');
+        const cropRotateN = dom.findOne('#cropRotateN');
+        const cropRotate = dom.findOne('#cropRotate');
+        const cropRender = dom.findOne('#cropRender');
+        const result = dom.findOne('#result');
+
+        fetch(testImage)
+            .then(res => res.blob())
+            .then(file => {
+                UI.ImageCrop.init(cropDefault).load(file);
+            });
+
+        dom.addEvent(cropRotateN, 'click', async e => {
+            e.preventDefault();
+
+            UI.ImageCrop.init(cropDefault).rotate(-90);
+        });
+
+        dom.addEvent(cropRotate, 'click', async e => {
+            e.preventDefault();
+
+            UI.ImageCrop.init(cropDefault).rotate(90);
+        });
+
+        dom.addEvent(cropRender, 'click', async e => {
+            e.preventDefault();
+
+            const src = await UI.ImageCrop.init(cropDefault).result();
+            dom.setAttribute(result, 'src', src);
+        });
+    </script>
+</body>
+
+</html>

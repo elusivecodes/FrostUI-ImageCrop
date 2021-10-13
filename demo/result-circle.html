@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FrostUI ImageCrop Result Circle</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/elusivecodes/frostui@1.4.6/dist/frost-ui.css">
+    <script src="https://cdn.jsdelivr.net/gh/elusivecodes/frostui@1.4.6/dist/frost-ui-bundle.js"></script>
+    <script src="../dist/frost-ui-imagecrop.js"></script>
+    <script src="assets/test.js"></script>
+</head>
+
+<body>
+    <div class="container pt-5">
+        <div class="mb-4">
+            <div class="my-2" id="cropDefault"></div>
+        </div>
+        <div class="mt-1">
+            <button class="btn btn-light" id="cropRender">Render</button>
+        </div>
+        <div class="mt-4">
+            <img id="result">
+        </div>
+    </div>
+    <script>
+        const cropDefault = dom.findOne('#cropDefault');
+        const cropRender = dom.findOne('#cropRender');
+        const result = dom.findOne('#result');
+
+        fetch(testImage)
+            .then(res => res.blob())
+            .then(file => {
+                UI.ImageCrop.init(cropDefault).load(file);
+            });
+
+        dom.addEvent(cropRender, 'click', async e => {
+            e.preventDefault();
+
+            const src = await UI.ImageCrop.init(cropDefault).result({
+                circle: true
+            });
+            dom.setAttribute(result, 'src', src);
+        });
+    </script>
+</body>
+
+</html>
