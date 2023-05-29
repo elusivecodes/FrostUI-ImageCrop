@@ -69,7 +69,7 @@ export function _eventsResize() {
 
     const dragEvent = $.mouseDragFactory(downEvent, moveEvent);
 
-    $.addEvent(this._resize, 'mousedown.ui.imagecrop', dragEvent, { passive: true });
+    $.addEvent(this._resize, 'mousedown.ui.imagecrop', dragEvent);
 };
 
 /**
@@ -103,7 +103,7 @@ export function _eventsZoom() {
 
     const dragEvent = $.mouseDragFactory(downEvent, moveEvent, null, { touches: 2 });
 
-    $.addEvent(this._container, 'touchstart.ui.imagecrop', dragEvent, { passive: true });
+    $.addEvent(this._container, 'touchstart.ui.imagecrop', dragEvent);
 
     $.addEvent(this._container, 'wheel.ui.imagecrop', (e) => {
         e.preventDefault();

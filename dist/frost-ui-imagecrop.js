@@ -191,7 +191,7 @@
 
         const dragEvent = $.mouseDragFactory(downEvent, moveEvent);
 
-        $.addEvent(this._resize, 'mousedown.ui.imagecrop', dragEvent, { passive: true });
+        $.addEvent(this._resize, 'mousedown.ui.imagecrop', dragEvent);
     }
     /**
      * Attach zoom events.
@@ -224,7 +224,7 @@
 
         const dragEvent = $.mouseDragFactory(downEvent, moveEvent, null, { touches: 2 });
 
-        $.addEvent(this._container, 'touchstart.ui.imagecrop', dragEvent, { passive: true });
+        $.addEvent(this._container, 'touchstart.ui.imagecrop', dragEvent);
 
         $.addEvent(this._container, 'wheel.ui.imagecrop', (e) => {
             e.preventDefault();
@@ -540,7 +540,7 @@
         this._container = $.create('div', {
             class: this.constructor.classes.container,
             style: {
-                boxSizing: 'content-box'
+                boxSizing: 'content-box',
             },
         });
 
