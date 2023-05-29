@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FrostUI ImageCrop Enforce Boundary</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/elusivecodes/frostui@1.4.6/dist/frost-ui.css">
-    <script src="https://cdn.jsdelivr.net/gh/elusivecodes/frostui@1.4.6/dist/frost-ui-bundle.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/elusivecodes/frostui@2.3.1/dist/frost-ui.css">
+    <script src="https://cdn.jsdelivr.net/gh/elusivecodes/frostui@2.3.1/dist/frost-ui-bundle.js"></script>
     <script src="../dist/frost-ui-imagecrop.js"></script>
     <script src="assets/test.js"></script>
 </head>
@@ -24,9 +24,9 @@
         </div>
     </div>
     <script>
-        const cropDefault = dom.findOne('#cropDefault');
-        const cropRender = dom.findOne('#cropRender');
-        const result = dom.findOne('#result');
+        const cropDefault = $.findOne('#cropDefault');
+        const cropRender = $.findOne('#cropRender');
+        const result = $.findOne('#result');
 
         fetch(testImage)
             .then(res => res.blob())
@@ -34,11 +34,11 @@
                 UI.ImageCrop.init(cropDefault).load(file);
             });
 
-        dom.addEvent(cropRender, 'click', async e => {
+        $.addEvent(cropRender, 'click', async e => {
             e.preventDefault();
 
             const src = await UI.ImageCrop.init(cropDefault).result();
-            dom.setAttribute(result, 'src', src);
+            $.setAttribute(result, { src });
         });
     </script>
 </body>

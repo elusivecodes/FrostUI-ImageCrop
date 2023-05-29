@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FrostUI ImageCrop Events</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/elusivecodes/frostui@1.4.6/dist/frost-ui.css">
-    <script src="https://cdn.jsdelivr.net/gh/elusivecodes/frostui@1.4.6/dist/frost-ui-bundle.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/elusivecodes/frostui@2.3.1/dist/frost-ui.css">
+    <script src="https://cdn.jsdelivr.net/gh/elusivecodes/frostui@2.3.1/dist/frost-ui-bundle.js"></script>
     <script src="../dist/frost-ui-imagecrop.js"></script>
     <script src="assets/test.js"></script>
 </head>
@@ -21,8 +21,8 @@
         </div>
     </div>
     <script>
-        const cropDefault = dom.findOne('#cropDefault');
-        const events = dom.findOne('#events');
+        const cropDefault = $.findOne('#cropDefault');
+        const events = $.findOne('#events');
 
         fetch(testImage)
             .then(res => res.blob())
@@ -30,14 +30,14 @@
                 UI.ImageCrop.init(cropDefault).load(file);
             });
 
-        dom.addEvent(cropDefault, 'update.ui.imagecrop', e => {
-            const div = dom.create('div', {
+        $.addEvent(cropDefault, 'update.ui.imagecrop', e => {
+            const div = $.create('div', {
                 html: `<small>"${e.type}" event triggered</small>`
             });
-            dom.append(events, div);
+            $.append(events, div);
 
-            const scrollHeight = dom.height(events, DOM.SCROLL_BOX);
-            dom.setScrollY(events, scrollHeight);
+            const scrollHeight = $.height(events, { boxSize: $.SCROLL_BOX });
+            $.setScrollY(events, scrollHeight);
         });
     </script>
 </body>

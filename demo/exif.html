@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FrostUI ImageCrop Exif</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/elusivecodes/frostui@1.4.6/dist/frost-ui.css">
-    <script src="https://cdn.jsdelivr.net/gh/elusivecodes/frostui@1.4.6/dist/frost-ui-bundle.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/elusivecodes/frostui@2.3.1/dist/frost-ui.css">
+    <script src="https://cdn.jsdelivr.net/gh/elusivecodes/frostui@2.3.1/dist/frost-ui-bundle.js"></script>
     <script src="../dist/frost-ui-imagecrop.js"></script>
     <script src="assets/exif1.js"></script>
     <script src="assets/exif2.js"></script>
@@ -56,15 +56,15 @@
         </div>
     </div>
     <script>
-        const cropDefault = dom.findOne('#cropDefault');
-        const cropExif1 = dom.findOne('#cropExif1');
-        const cropExif2 = dom.findOne('#cropExif2');
-        const cropExif3 = dom.findOne('#cropExif3');
-        const cropExif4 = dom.findOne('#cropExif4');
-        const cropExif5 = dom.findOne('#cropExif5');
-        const cropExif6 = dom.findOne('#cropExif6');
-        const cropExif7 = dom.findOne('#cropExif7');
-        const cropExif8 = dom.findOne('#cropExif8');
+        const cropDefault = $.findOne('#cropDefault');
+        const cropExif1 = $.findOne('#cropExif1');
+        const cropExif2 = $.findOne('#cropExif2');
+        const cropExif3 = $.findOne('#cropExif3');
+        const cropExif4 = $.findOne('#cropExif4');
+        const cropExif5 = $.findOne('#cropExif5');
+        const cropExif6 = $.findOne('#cropExif6');
+        const cropExif7 = $.findOne('#cropExif7');
+        const cropExif8 = $.findOne('#cropExif8');
 
         fetch(exif1)
             .then(res => res.blob())

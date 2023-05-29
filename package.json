@@ -1,6 +1,6 @@
 {
-    "name": "frostui-imagecrop",
-    "version": "1.0.0",
+    "name": "@fr0st/ui-imagecrop",
+    "version": "2.0.0",
     "description": "FrostUI-ImageCrop is a free, open-source Image Crop component for Javascript.",
     "keywords": [
         "ui",
@@ -15,17 +15,21 @@
         "url": "https://github.com/elusivecodes/FrostUI-ImageCrop/issues",
         "email": "elusivecodes@gmail.com"
     },
-    "main": "./dist/frost-ui-imagecrop.js",
+    "main": "src/index.js",
+    "type": "module",
     "files": [
-        "/dist/frost-ui-imagecrop.js",
-        "/src/scss",
+        "dist",
         "/LICENSE",
-        "/README.md"
+        "/README.md",
+        "src"
     ],
     "scripts": {
-        "build": "node build.js",
+        "build": "npm run js",
         "test": "echo \"Error: no test specified\" && exit 1",
-        "lint": "stylelint \"src/scss/**/*.scss\" --fix"
+        "js": "npm run js-compile && npm run js-minify",
+        "js-compile": "rollup --config",
+        "js-lint": "eslint --ext .js .",
+        "js-minify": "terser --compress passes=2 --mangle --source-map \"content=dist/frost-ui-imagecrop.js.map\" --output dist/frost-ui-imagecrop.min.js dist/frost-ui-imagecrop.js"
     },
     "repository": {
         "type": "git",
@@ -35,7 +39,10 @@
     "license": "MIT",
     "private": false,
     "devDependencies": {
-        "filepath": "^1.1.0",
-        "terser": "^5.7.0"
+        "@rollup/plugin-node-resolve": "^15.0.2",
+        "eslint": "^8.41.0",
+        "eslint-config-google": "^0.14.0",
+        "rollup": "^3.23.0",
+        "terser": "^5.17.6"
     }
 }

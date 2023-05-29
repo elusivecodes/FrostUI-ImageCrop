@@ -15,15 +15,13 @@ It is built on top of the [FrostUI](https://github.com/elusivecodes/FrostUI) lib
 
 **Dependencies**
 
-- [FrostCore](https://github.com/elusivecodes/FrostCore)
-- [FrostDOM](https://github.com/elusivecodes/FrostDOM)
+- [fQuery](https://github.com/elusivecodes/fQuery)
 - [FrostUI](https://github.com/elusivecodes/FrostUI)
 
 **CSS**
 
 ```html
 <link rel="stylesheet" href="/path/to/frost-ui.min.css" />
-<link rel="stylesheet" href="/path/to/frost-ui-imagecrop.min.css" />
 ```
 
 **JS**
