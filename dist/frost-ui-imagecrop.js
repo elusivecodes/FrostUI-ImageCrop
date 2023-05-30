@@ -135,8 +135,6 @@
                 return false;
             }
 
-            e.preventDefault();
-
             lastPos = ui.getPosition(e);
         };
 
@@ -171,7 +169,6 @@
         let lastPos;
 
         const downEvent = (e) => {
-            e.preventDefault();
             e.stopPropagation();
 
             lastPos = ui.getPosition(e);

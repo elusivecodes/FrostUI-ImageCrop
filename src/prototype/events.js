@@ -12,8 +12,6 @@ export function _events() {
             return false;
         }
 
-        e.preventDefault();
-
         lastPos = getPosition(e);
     };
 
@@ -49,7 +47,6 @@ export function _eventsResize() {
     let lastPos;
 
     const downEvent = (e) => {
-        e.preventDefault();
         e.stopPropagation();
 
         lastPos = getPosition(e);
