@@ -1,6 +1,6 @@
 {
     "name": "@fr0st/ui-imagecrop",
-    "version": "2.0.3",
+    "version": "2.0.4",
     "description": "FrostUI-ImageCrop is a free, open-source Image Crop component for Javascript.",
     "keywords": [
         "ui",
@@ -19,8 +19,8 @@
     "type": "module",
     "files": [
         "dist",
-        "/LICENSE",
-        "/README.md",
+        "LICENSE",
+        "README.md",
         "src"
     ],
     "scripts": {
@@ -28,7 +28,7 @@
         "test": "echo \"Error: no test specified\" && exit 1",
         "js": "npm run js-compile && npm run js-minify",
         "js-compile": "rollup --config",
-        "js-lint": "eslint --ext .js .",
+        "js-lint": "eslint",
         "js-minify": "terser --compress passes=2 --mangle --source-map \"content=dist/frost-ui-imagecrop.js.map\" --output dist/frost-ui-imagecrop.min.js dist/frost-ui-imagecrop.js"
     },
     "repository": {
@@ -39,10 +39,10 @@
     "license": "MIT",
     "private": false,
     "devDependencies": {
+        "@fr0st/eslint-config": "^1.0.2",
         "@rollup/plugin-node-resolve": "^15.2.3",
-        "eslint": "^8.54.0",
-        "eslint-config-google": "^0.14.0",
-        "rollup": "^4.6.0",
-        "terser": "^5.24.0"
+        "eslint": "^9.5.0",
+        "rollup": "^4.18.0",
+        "terser": "^5.31.1"
     }
 }
